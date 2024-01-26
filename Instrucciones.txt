@@ -1,10 +1,27 @@
+"npm start"	 => 	Arranca el servidor en http://localhost:3000
+
 REGISTRAR NUEVO USUARIO:
+
+**** Campos:
+		name: "Antonio",
+		lastName: "Pérez Rivera",
+		email: "antonioper46@gmail.com",
+		address: "C/ Víctor Hugo 74 3C, El Barraco, Ávila, España",
+		password: "Az$56P_K",
+
+	Cuando se crea el usuario le añade un campo "id" numérico único.
+	También le añade el campo "userType", con el valor "user"  (Más adelante se podrá cambiar a "producer" o "admin")
+
+
+
+**** Formato de Peticiones:
 
 POST  con un FormData a "http://localhost:3000/register"
 
 Content-Type:	multipart/form-data
 
-Devuelve: JSON con el token del usuario (código 200) ó Error (código 400). Axios convierte automáticamente a string este JSON.
+**** Devuelve: JSON con un token alfanumérico del usuario (código 200) ó Error (código 400). Axios convierte automáticamente a string este JSON.
+
 
 No permite registrar usuarios con un email que ya exista en la base de datos (Error 400 con mensaje "The email already exists!")
 
