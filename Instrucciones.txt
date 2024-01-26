@@ -1,0 +1,11 @@
+REGISTRAR NUEVO USUARIO:
+
+POST  con un FormData a "http://localhost:3000/register"
+
+Content-Type:	multipart/form-data
+
+Devuelve: JSON con el token del usuario (código 200) ó Error (código 400). Axios convierte automáticamente a string este JSON.
+
+No permite registrar usuarios con un email que ya exista en la base de datos (Error 400 con mensaje "The email already exists!")
+
+///////////////////////////////////////////////////////////////
