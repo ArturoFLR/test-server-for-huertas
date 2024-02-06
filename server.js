@@ -13,13 +13,14 @@ const loginUser = require("./utils/loginUser");
 const getBestPublications = require("./utils/getBestPublications");
 const createPublication = require("./utils/createPublication");
 const getAllPublications = require("./utils/getAllPublications");
+const mockDataForCharts = require("./data/mockDataForCharts");
 
 
 
 
 //MIDDLEWARES
 app.use(express.urlencoded( {extended: false}) );
-app.use(cors( {origin: "http://localhost:5173", credentials: true} ));
+app.use(cors( {origin: ["http://localhost:5173", "http://localhost:4173"], credentials: true} ));
 app.use(cookieParser());
 app.use(fileUpload());
 
@@ -54,6 +55,7 @@ app.post("/register", (req, res) => {
 app.get("/userSession", (req, res) => {
 	const userToken = req.cookies.userId;
 	const session = SESSIONS.get(userToken);
+	console.log(SESSIONS);
 
 	if (session) {
 		const response = {
@@ -120,7 +122,7 @@ app.use(express.static("public"));
 // GET BEST 3 PUBLICATIONS
 
 app.get("/publications/best", (req, res) => {
-	const response = getBestPublications(3);
+	const response = getBestPublications(6);
 
 	res.json(response);
 });
@@ -165,3 +167,10 @@ app.post("/publications/upload", (req, res) => {
 });
 
 
+// GET CHARTS DATA
+
+app.get("/charts/all", (req, res) => {
+	const response = mockDataForCharts;
+
+	res.json(response);
+});

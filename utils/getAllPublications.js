@@ -4,6 +4,19 @@ function getAllPublications () {
 	const response = [];
 
 	publications.map( (element) => {
+		const commentsWithoutUserData = [];
+
+		element.comments.map( (comment) => {
+			const newComment = {
+				id: comment.id,
+				author: comment.author.name,
+				content: comment.content,
+				publicationDate: comment.publicationDate
+			};
+
+			commentsWithoutUserData.push(newComment);
+		});
+
 		response.push(
 			{
 				id: element.id,
@@ -13,7 +26,7 @@ function getAllPublications () {
 				mainImage: element.mainImage,
 				comments: element.comments,
 				score: element.score,
-				mainText: element.mainText
+				mainText: commentsWithoutUserData
 			}
 		);
 	});

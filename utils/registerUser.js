@@ -36,13 +36,10 @@ function checkDuplicateEmail (email) {
 	let isDuplicate = false;
 	
 	users.map( (element) => {
-		console.log(element.email);
-		console.log(email);
 		if (element.email === email) {
 			isDuplicate = true;
 		}
 	});
-	console.log(isDuplicate);
 	return isDuplicate;
 }
 

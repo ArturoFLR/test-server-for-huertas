@@ -139,7 +139,7 @@ Cualquier usuario tiene acceso a ellas, por lo que no hay que adjuntar nada, ni 
 
 **** Devuelve: 
 
-Un objeto JSON con las siguientes propiedades:
+Un  JSON con un array de las mejores publicaciones (en forma de objetos con las siguientes propiedades):
 
 	{
 			id:		(number)
@@ -177,18 +177,28 @@ Debemos activar el envío de cookies junto con nuestra petición (withCredential
 
 **** Devuelve: 
 
-Si el usuario tiene una sesión abierta devuelve un objeto JSON con las siguientes propiedades:
+Si el usuario tiene una sesión abierta devuelve un JSON con un array que contiene las publicaciones (objetos con la siguiente estructura):
 
 {
-	id: element.id,
-	title: element.title,
-	author: element.author.name,
-	publicationDate: element.publicationDate,
-	mainImage: element.mainImage,
-	comments: element.comments,
-	score: element.score,
-	mainText: element.mainText
+	id: 
+	title: 
+	author: 	(string con el nombre)
+	publicationDate: 
+	mainImage:  (string con URL)
+	comments: 	(Aray de comentarios)
+	score: 		(number)
+	mainText: 
 }
+
+Los comentarios son objetos con las siguientes propiedades:
+
+	{
+		id: 	(number)
+		author: (objeto user),
+		content: (string)
+		publicationDate: 
+	}
+
 
 Si el usuario no está autorizado devuelve Error 400 con el texto "You must be registered to access all publications".
 
