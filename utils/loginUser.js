@@ -12,7 +12,7 @@ async function loginUser (userData) {
 		if ( users[i].email === userData.userEmail ) {
 			userEmailExists = true;
 			userPassword = users[i].password;
-			userName = users[i].name;
+			userName = `${users[i].name} ${users[i].lastName}`;
 			userRole = users[i].userType;
 			userMail = users[i].email;
 			break;

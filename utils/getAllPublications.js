@@ -24,9 +24,9 @@ function getAllPublications () {
 				author: element.author.name,
 				publicationDate: element.publicationDate,
 				mainImage: element.mainImage,
-				comments: element.comments,
+				comments: commentsWithoutUserData,
 				score: element.score,
-				mainText: commentsWithoutUserData
+				mainText: element.mainText
 			}
 		);
 	});

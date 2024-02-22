@@ -36,14 +36,20 @@ app.post("/register", (req, res) => {
 
 	registerUser(newUserData)
 		.then( (token) => {
-			SESSIONS.set(token, {userName: newUserData.userName, userRole: "user", userMail: newUserData.userEmail});
+			SESSIONS.set(token, {userName: `${newUserData.userName} ${newUserData.userLastName}`, userRole: "user", userMail: newUserData.userEmail});
+
+			const response = {
+				userName: `${newUserData.userName} ${newUserData.userLastName}`,
+				userRole: "user"
+			};
+
 			res.cookie("userId", token, {
 				secure: true,								
 				httpOnly: true,
 				sameSite: "none",
 			})
 				.status(200)
-				.send( JSON.stringify(newUserData.userName) );
+				.send( JSON.stringify(response) );
 		})
 		.catch( (err) => {
 			res.status(400).send(err.message);
@@ -55,7 +61,6 @@ app.post("/register", (req, res) => {
 app.get("/userSession", (req, res) => {
 	const userToken = req.cookies.userId;
 	const session = SESSIONS.get(userToken);
-	console.log(SESSIONS);
 
 	if (session) {
 		const response = {
